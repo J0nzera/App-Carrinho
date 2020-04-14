@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.example.myapplication.bd.AppDatabase;
 import com.example.myapplication.bd.Produto;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,12 +29,11 @@ public class MainActivity extends AppCompatActivity {
                 AppDatabase db = Room.databaseBuilder(getApplication(),
                         AppDatabase.class, "database-name").build();
 
-                Produto produto = new Produto();
-                produto.nomeprod = "Playstation";
-                produto.descprod = "Descrição do Produto";
-                produto.valorprod = "999,999";
-
-                db.produtoDao().insertAll(produto);
+                List<Produto> produtos = db.produtoDao().getAll();
+                Produto produto = produtos.get(0);
+                System.out.println(produto.nomeprod);
+                System.out.println(produto.descprod);
+                System.out.println(produto.valorprod);
 
                 }
         }.start();
