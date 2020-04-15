@@ -17,22 +17,24 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     AppDatabase db;
+    Button bttadicionar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
+        bttadicionar = (Button) findViewById(R.id.bttadicionar);
 
-   public void carregar (View view) {
-        new Thread() {
+        final AppDatabase db = Room.databaseBuilder(getApplication(),
+                      AppDatabase.class, "database-name")
+                .allowMainThreadQueries()
+                .build();
 
+
+        bttadicionar.setOnClickListener(new View.OnClickListener() {
             @Override
-                    public void run () {
-                AppDatabase db = Room.databaseBuilder(getApplication(),
-                        AppDatabase.class, "database-name").build();
-
+            public void onClick(View v) {
                 List<Produto> produtos = db.produtoDao().getAll();
                 TextView textView = findViewById(R.id.ttnome);
                 TextView textView1 = findViewById(R.id.ttdesc);
@@ -42,9 +44,31 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(produto.nomeprod);
                 textView1.setText(produto.descprod);
                 textView2.setText(produto.valorprod);
-
             }
-        }.start();
-   }
+        });
+
+    }
+
+//   public void carregar (View view) {
+//        new Thread() {
+//
+//            @Override
+//                    public void run () {
+//                AppDatabase db = Room.databaseBuilder(getApplication(),
+//                        AppDatabase.class, "database-name").build();
+//
+//                List<Produto> produtos = db.produtoDao().getAll();
+//                TextView textView = findViewById(R.id.ttnome);
+//                TextView textView1 = findViewById(R.id.ttdesc);
+//                TextView textView2 = findViewById(R.id.ttvalor);
+//
+//                Produto produto = produtos.get(0);
+//                textView.setText(produto.nomeprod);
+//                textView1.setText(produto.descprod);
+//                textView2.setText(produto.valorprod);
+//
+//            }
+//        }.start();
+//   }
 
 }
