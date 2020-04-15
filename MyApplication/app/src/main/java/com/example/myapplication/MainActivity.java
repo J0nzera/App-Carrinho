@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppDatabase db = Room.databaseBuilder(getApplication(),
-                AppDatabase.class, "database-name").build();
-
     }
 
    public void carregar (View view) {
@@ -33,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
                     public void run () {
+                AppDatabase db = Room.databaseBuilder(getApplication(),
+                        AppDatabase.class, "database-name").build();
 
                 List<Produto> produtos = db.produtoDao().getAll();
                 TextView textView = findViewById(R.id.ttnome);
