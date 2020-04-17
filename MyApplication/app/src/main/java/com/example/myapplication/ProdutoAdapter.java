@@ -38,11 +38,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        AppDatabase db = Room.databaseBuilder(getApplication(),
-                AppDatabase.class, "database-name")
-                .build();
-
-        holder.ttnome.setText(P);
 
     }
 
@@ -62,7 +57,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
             ttnome = (TextView) itemView.findViewById(R.id.ttnome);
             ttdesc = (TextView) itemView.findViewById(R.id.ttdesc);
-            ttnome = (TextView) itemView.findViewById(R.id.ttnome);
+            ttvalor = (TextView) itemView.findViewById(R.id.ttvalor);
         }
     }
 }
