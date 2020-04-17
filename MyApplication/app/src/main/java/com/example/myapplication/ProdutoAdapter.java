@@ -1,13 +1,18 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.myapplication.bd.AppDatabase;
 import com.example.myapplication.bd.Produto;
 
 import java.util.List;
@@ -24,11 +29,20 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View v = mLayoutInflater.inflate(R.layout.item_prod, parent, false);
+        MyViewHolder mvh = new MyViewHolder(v);
+
+        return mvh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        AppDatabase db = Room.databaseBuilder(getApplication(),
+                AppDatabase.class, "database-name")
+                .build();
+
+        holder.ttnome.setText(P);
 
     }
 
@@ -39,10 +53,16 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        
+        public TextView ttnome;
+        public TextView ttdesc;
+        public TextView ttvalor;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            ttnome = (TextView) itemView.findViewById(R.id.ttnome);
+            ttdesc = (TextView) itemView.findViewById(R.id.ttdesc);
+            ttnome = (TextView) itemView.findViewById(R.id.ttnome);
         }
     }
 }
