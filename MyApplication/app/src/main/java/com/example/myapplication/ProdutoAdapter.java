@@ -37,13 +37,15 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.ttnome.setText(mList.get(position).nomeprod);
+        holder.ttdesc.setText(mList.get(position).descprod);
+        holder.ttvalor.setText(mList.get(position).valorprod);
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -55,9 +57,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ttnome = (TextView) itemView.findViewById(R.id.ttnome);
-            ttdesc = (TextView) itemView.findViewById(R.id.ttdesc);
-            ttvalor = (TextView) itemView.findViewById(R.id.ttvalor);
+            ttnome = itemView.findViewById(R.id.ttnome);
+            ttdesc = itemView.findViewById(R.id.ttdesc);
+            ttvalor = itemView.findViewById(R.id.ttvalor);
         }
     }
 }
