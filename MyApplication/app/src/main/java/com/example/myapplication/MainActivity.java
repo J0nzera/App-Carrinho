@@ -5,6 +5,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
+import com.example.myapplication.bd.AppDatabase;
+import com.example.myapplication.bd.Produto;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
+        AppDatabase db = Room.databaseBuilder(getApplication(),
+                AppDatabase.class, "database-name")
+                .allowMainThreadQueries()
+                .build();
+
+        List<Produto> produtos = db.produtoDao().getAll();
 
         }
 
