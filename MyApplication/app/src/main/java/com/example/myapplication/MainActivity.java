@@ -31,5 +31,50 @@ public class MainActivity extends AppCompatActivity {
         List<Produto> produtos = db.produtoDao().getAll();
 
         adapter.setProdutos(produtos);
+
+        bancoDb();
     }
+
+    public void bancoDb() {
+        new Thread() {
+
+            @Override
+            public void run() {
+
+                AppDatabase db = Room.databaseBuilder(getApplication(),
+                        AppDatabase.class, "database-name").build();
+
+                Produto produto = new Produto();
+                produto.nomeprod = "Playstation";
+                produto.descprod = "Descrição do Produto";
+                produto.valorprod = "999,999";
+
+                AppDatabase.getConnection(getApplicationContext()).produtoDao().insertAll(produto);
+
+                produto = new Produto();
+                produto.nomeprod = "Xbox";
+                produto.descprod = "Descrição do Produto";
+                produto.valorprod = "999,999";
+
+                AppDatabase.getConnection(getApplicationContext()).produtoDao().insertAll(produto);
+
+                produto = new Produto();
+                produto.nomeprod = "Computador";
+                produto.descprod = "Descrição do Produto";
+                produto.valorprod = "999,999";
+
+                AppDatabase.getConnection(getApplicationContext()).produtoDao().insertAll(produto);
+
+                produto = new Produto();
+                produto.nomeprod = "Notebook";
+                produto.descprod = "Descrição do Produto";
+                produto.valorprod = "999,999";
+
+                AppDatabase.getConnection(getApplicationContext()).produtoDao().insertAll(produto);
+
+            }
+        }.start();
+    }
+
+
 }
