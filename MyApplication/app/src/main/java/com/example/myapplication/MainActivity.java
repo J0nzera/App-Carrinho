@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                AppDatabase db = Room.databaseBuilder(getApplication(),
-                        AppDatabase.class, "database-name").build();
-
                 Produto produto = new Produto();
                 produto.nomeprod = "Playstation";
                 produto.descprod = "Descrição do Produto";
